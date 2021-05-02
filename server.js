@@ -32,7 +32,6 @@ const server = app.listen(port, () => {
 // GET Function
 
 app.get('/allData', (request, response) => {
-    console.log('Retrieve projectData');
     response.send(projectData);
 });
 
@@ -41,7 +40,6 @@ app.get('/allData', (request, response) => {
 let data = [];
 
 app.post('/addWeather', (request, response) => {
-    console.log(request.body);
     projectData = request.body;
     response.send(projectData);
 });

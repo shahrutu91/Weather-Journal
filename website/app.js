@@ -3,7 +3,7 @@
 
 // Personal API Key for OpenWeatherMap API
 const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey = '&units=metric&appid'
+const apiKey = '&units=metric&appid=b53d468a72fe2c52ac5fc52b3083705a'
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -23,7 +23,7 @@ function performAction(e){
     .then(function (weatherData){
         const temperature = weatherData.main.temp;
         const feeling = feelings;
-        postData('/addWeather', {
+        postData('http://localhost:8000/addWeather', {
             temp: temperature, date: newDate, feeling: feeling
             })
             .then(() => {
@@ -35,7 +35,7 @@ function performAction(e){
 // function to Get Web API Data
 const getWeather = async (baseURL, zip, apiKey) => {
     // input Validation
-    if (zip.checkValidity || zip.value == "") {
+    if (zip == '') {
         alert('Please enter zip code in XXXXXX format');  
     }else{
         // build URL into fetch call
@@ -85,7 +85,7 @@ const newContent = document.getElementById('content');
 
 // function to update UI
 const updateUI = async () => {
-    const request = await fetch('/allData');
+    const request = await fetch('http://localhost:8000/allData');
     const allData = await request.json();
     try{
         newDates.innerHTML = `Date: ${allData.date}`;

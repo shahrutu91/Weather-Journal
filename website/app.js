@@ -34,16 +34,15 @@ function performAction(e){
 
 // function to Get Web API Data
 const getWeather = async (baseURL, zip, apiKey) => {
-    // build URL into fetch call
-    const response = await fetch(baseURL + zip + apiKey)
-    //  call API
-    try{
+    // input Validation
+    if (zip.checkValidity || zip.value == "") {
+        alert('Please enter zip code in XXXXXX format');  
+    }else{
+        // build URL into fetch call
+        const response = await fetch(baseURL + zip + apiKey)
         const weatherData = await response.json();
         console.log(weatherData);
         return weatherData;
-    // Handle Error
-    }catch(error){
-        console.log('error', error);
     }
 };
 
